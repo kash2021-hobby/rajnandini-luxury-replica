@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const packages = [
   {
@@ -69,15 +70,16 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
-              <button
-                className={`w-full py-2.5 rounded-full font-body text-sm font-medium transition-colors ${
+              <Link
+                to={`/contact?package=${encodeURIComponent(pkg.name)}`}
+                className={`block w-full text-center py-2.5 rounded-full font-body text-sm font-medium transition-colors ${
                   pkg.highlighted
                     ? "bg-background text-foreground hover:bg-background/90"
                     : "bg-primary text-primary-foreground hover:bg-primary/90"
                 }`}
               >
                 Get Started
-              </button>
+              </Link>
             </div>
           ))}
         </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import heroImg1 from "@/assets/hero-1.jpg";
 import heroImg2 from "@/assets/hero-2.jpg";
 import heroImg3 from "@/assets/hero-3.jpg";
@@ -18,12 +19,11 @@ const Hero = () => {
             Welcome to Rajnandini Banquet Hall, a premium wedding venue and marriage hall designed to make every occasion memorable.
           </p>
           <div className="flex gap-4 pt-2">
-            <a
-              href="#contact"
-              className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-body text-sm font-medium hover:bg-primary/90 transition-colors">Book Now
-
-
-            </a>
+            <Link
+              to="/contact"
+              className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-body text-sm font-medium hover:bg-primary/90 transition-colors">
+              Book Now
+            </Link>
             <a
               href="#services"
               className="border border-foreground/20 text-foreground px-8 py-3 rounded-full font-body text-sm font-medium hover:bg-foreground/5 transition-colors">
