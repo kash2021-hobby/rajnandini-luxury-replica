@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -41,6 +44,15 @@ const Gallery = () => {
             </div>
           ))}
         </div>
+
+          <div className="text-center mt-12">
+            <Link to="/gallery">
+              <Button size="lg" className="gap-2 rounded-full px-8">
+                View Full Gallery
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
       </div>
     </section>
   );
