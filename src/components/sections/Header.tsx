@@ -79,7 +79,7 @@ const Header = () => {
         </div>
 
         {isOpen &&
-        <div className="lg:hidden bg-background border-t border-border px-6 py-4 space-y-3">
+        <div className="lg:hidden absolute left-0 right-0 top-full bg-background border-t border-border px-6 py-4 space-y-3 shadow-lg">
             {navLinks.map((link) =>
           <button key={link} onClick={() => scrollTo(link)} className="block w-full text-left font-body text-foreground/80 hover:text-primary py-2">
                 {link}
