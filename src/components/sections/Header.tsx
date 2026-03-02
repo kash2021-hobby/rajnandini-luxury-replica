@@ -9,10 +9,16 @@ const Header = () => {
   const navigate = useNavigate();
   const navLinks = ["Home", "About Us", "Services", "Gallery", "Blog", "Contact"];
 
+  const pageLinks: Record<string, string> = {
+    "Contact": "/contact",
+    "About Us": "/about",
+    "Gallery": "/gallery",
+  };
+
   const scrollTo = (id: string) => {
     setIsOpen(false);
-    if (id === "Contact") {
-      navigate("/contact");
+    if (pageLinks[id]) {
+      navigate(pageLinks[id]);
       return;
     }
     if (id === "Home") {
