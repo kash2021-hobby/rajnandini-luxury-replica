@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Phone, Mail, Menu, X } from "lucide-react";
-import logo from "@/assets/logo.webp";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +20,10 @@ const Header = () => {
             <a href="tel:+917099042360" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Phone className="w-3.5 h-3.5" /> +91 70990 42360
             </a>
-            <a href="mailto:info@rajnandiniguwahati.com" className="hidden sm:flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <a
+              href="mailto:info@rajnandiniguwahati.com"
+              className="hidden sm:flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
               <Mail className="w-3.5 h-3.5" /> info@rajnandiniguwahati.com
             </a>
           </div>
@@ -31,12 +33,12 @@ const Header = () => {
       {/* Nav */}
       <nav className="bg-background/95 backdrop-blur-md shadow-sm">
         <div className="container flex justify-between items-center py-4">
-          <a href="#" className="flex items-center">
-            <img src={logo} alt="Rajnandini Banquet Hall" className="h-12" />
+          <a href="#" className="font-heading text-2xl font-bold text-foreground tracking-tight">
+            Rajnandini
           </a>
 
           {/* Desktop nav */}
-          <ul className="hidden lg:flex items-center gap-8">
+          <ul className="hidden lg:flex items-center gap-4">
             {navLinks.map((link) => (
               <li key={link}>
                 <button
