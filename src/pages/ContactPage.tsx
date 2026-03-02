@@ -17,7 +17,8 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your message! We'll get back to you soon.");
+    const text = `Hi, I'm ${form.name}.%0A%0AEmail: ${form.email}${form.phone ? `%0APhone: ${form.phone}` : ""}%0A%0A${form.message}`;
+    window.open(`https://wa.me/917099042360?text=${text}`, "_blank");
     setForm({ name: "", email: "", phone: "", message: "" });
   };
 
