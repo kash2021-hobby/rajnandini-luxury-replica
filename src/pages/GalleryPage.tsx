@@ -1,4 +1,3 @@
-import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
 
 import gallery1 from "@/assets/gallery-1.jpg";
@@ -20,7 +19,7 @@ const images = [
 const GalleryPage = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      
       <section className="pt-32 pb-20 lg:pb-28">
         <div className="container">
           <div className="text-center mb-16">

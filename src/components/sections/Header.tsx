@@ -56,7 +56,7 @@ const Header = () => {
       <nav className="bg-background/95 backdrop-blur-md shadow-sm">
         <div className="container flex justify-between items-center py-4">
           <Link to="/" className="inline-flex items-center">
-            <img src={logo} alt="Rajnandini Banquet Hall" className="h-10 md:h-12 w-auto object-contain" loading="eager" />
+            <img src={logo} alt="Rajnandini Banquet Hall" width={120} height={48} className="h-10 md:h-12 w-[100px] md:w-[120px] shrink-0 object-contain" loading="eager" />
           </Link>
 
           <ul className="hidden lg:flex items-center gap-8">

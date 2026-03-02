@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
 import contactImg from "@/assets/contact.jpg";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
@@ -24,7 +23,7 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      
       <div className="pt-32 pb-20 lg:pb-28">
         <div className="container">
           <div className="text-center mb-16">

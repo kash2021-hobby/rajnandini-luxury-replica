@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
@@ -31,7 +30,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      
       <div className="fade-up visible"><Hero /></div>
       <div className="fade-up"><About /></div>
       <div className="fade-up"><Services /></div>

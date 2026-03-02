@@ -1,4 +1,3 @@
-import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
 import aboutImg from "@/assets/about.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
@@ -10,7 +9,7 @@ import { Link } from "react-router-dom";
 const AboutPage = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      
       <section className="pt-32 pb-20 lg:pb-28">
         <div className="container">
           {/* Hero */}
