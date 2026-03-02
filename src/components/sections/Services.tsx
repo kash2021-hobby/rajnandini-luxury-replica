@@ -4,27 +4,27 @@ import service3 from "@/assets/service-3.jpg";
 import service4 from "@/assets/service-4.jpg";
 
 const services = [
-  {
-    image: service1,
-    title: "Wedding Planning",
-    subtitle: "Your Dream Wedding, Perfectly Planned",
-  },
-  {
-    image: service2,
-    title: "Fine Dinning",
-    subtitle: "Your Dream Wedding, Perfectly Planned",
-  },
-  {
-    image: service3,
-    title: "Corporate Event Decor",
-    subtitle: "Your Dream Wedding, Perfectly Planned",
-  },
-  {
-    image: service4,
-    title: "Dinner Planning",
-    subtitle: "Your Dream Wedding, Perfectly Planned",
-  },
-];
+{
+  image: service1,
+  title: "Wedding Planning",
+  subtitle: "Your Dream Wedding, Perfectly Planned"
+},
+{
+  image: service2,
+  title: "Fine Dinning",
+  subtitle: "Your Dream Wedding, Perfectly Planned"
+},
+{
+  image: service3,
+  title: "Corporate Event Decor",
+  subtitle: "Your Dream Wedding, Perfectly Planned"
+},
+{
+  image: service4,
+  title: "Dinner Planning",
+  subtitle: "Your Dream Wedding, Perfectly Planned"
+}];
+
 
 const Services = () => {
   return (
@@ -46,14 +46,14 @@ const Services = () => {
 
         {/* Service Cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {services.map((service) => (
-            <div key={service.title} className="group cursor-pointer">
+          {services.map((service) =>
+          <div key={service.title} className="group cursor-pointer">
               <div className="overflow-hidden rounded-2xl mb-5">
                 <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-[340px] object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                src={service.image}
+                alt={service.title}
+                className="w-full h-[340px] object-cover transition-transform duration-500 group-hover:scale-105" />
+
               </div>
               <h3 className="font-heading text-xl md:text-2xl font-semibold text-foreground text-center">
                 {service.title}
@@ -62,21 +62,21 @@ const Services = () => {
                 {service.subtitle}
               </p>
             </div>
-          ))}
+          )}
         </div>
 
         {/* All Services Button */}
         <div className="text-center">
           <a
             href="#services"
-            className="inline-block font-body text-sm font-medium text-foreground border border-border rounded-full px-8 py-3 hover:bg-muted transition-colors"
-          >
-            All Services
+            className="inline-block font-body text-sm font-medium text-foreground border border-border rounded-full px-8 py-3 hover:bg-muted transition-colors">
+
+
           </a>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default Services;
