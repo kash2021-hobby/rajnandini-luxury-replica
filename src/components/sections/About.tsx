@@ -4,7 +4,7 @@ import aboutImg from "@/assets/about.jpg";
 const About = () => {
   return (
     <section id="about-us" className="py-20 lg:py-28">
-      <div className="container grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="container grid lg:grid-cols-2 gap-12 lg:gap-20 items-center bg-[#f3f4ec]">
         {/* Left — blob image */}
         <div className="flex justify-center">
           <div className="relative">
@@ -15,14 +15,14 @@ const About = () => {
               <img
                 src={aboutImg}
                 alt="Rajnandini Banquet Hall exterior"
-                className="w-full h-full object-cover"
-              />
+                className="w-full h-full object-cover" />
+
             </div>
             {/* Decorative dots */}
             <div className="absolute -bottom-6 -right-6 w-24 h-24 grid grid-cols-4 gap-1.5 opacity-30">
-              {Array.from({ length: 16 }).map((_, i) => (
-                <div key={i} className="w-2 h-2 rounded-full bg-secondary" />
-              ))}
+              {Array.from({ length: 16 }).map((_, i) =>
+              <div key={i} className="w-2 h-2 rounded-full bg-secondary" />
+              )}
             </div>
           </div>
         </div>
@@ -43,14 +43,14 @@ const About = () => {
           </p>
           <Link
             to="/about"
-            className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-full font-body text-sm font-medium hover:bg-primary/90 transition-colors mt-2"
-          >
+            className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-full font-body text-sm font-medium hover:bg-primary/90 transition-colors mt-2">
+
             Learn More
           </Link>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default About;
