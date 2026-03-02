@@ -3,7 +3,7 @@ import aboutImg from "@/assets/about.jpg";
 
 const About = () => {
   return (
-    <section id="about-us" className="py-20 lg:py-28">
+    <section id="about-us" className="py-20 lg:py-28 bg-[#f3f4ec]">
       <div className="container grid lg:grid-cols-2 gap-12 lg:gap-20 items-center bg-[#f3f4ec]">
         {/* Left — blob image */}
         <div className="flex justify-center">
