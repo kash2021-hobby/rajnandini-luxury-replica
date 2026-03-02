@@ -1,19 +1,13 @@
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Utensils, Leaf, Salad } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import menuVeg from "@/assets/menu-veg.jpg";
+import menuNonveg from "@/assets/menu-nonveg.jpg";
+import menuJain from "@/assets/menu-jain.jpg";
 
 const menus = [
   {
     title: "Veg Food Menu",
-    icon: Leaf,
-    color: "text-primary",
-    bg: "bg-primary/10",
+    image: menuVeg,
     items: [
       "Paneer Butter Masala",
       "Dal Makhani",
@@ -25,9 +19,7 @@ const menus = [
   },
   {
     title: "Non-Veg Food Menu",
-    icon: Utensils,
-    color: "text-secondary",
-    bg: "bg-secondary/10",
+    image: menuNonveg,
     items: [
       "Butter Chicken",
       "Mutton Rogan Josh",
@@ -39,9 +31,7 @@ const menus = [
   },
   {
     title: "Jain Food Box",
-    icon: Salad,
-    color: "text-primary",
-    bg: "bg-primary/10",
+    image: menuJain,
     items: [
       "No Onion No Garlic Sabzi",
       "Jain Dal Tadka",
@@ -53,27 +43,30 @@ const menus = [
   },
 ];
 
-const MenuCard = ({ menu }: { menu: (typeof menus)[0] }) => {
-  const Icon = menu.icon;
-  return (
-    <div className="bg-card border border-border rounded-3xl p-8 h-full flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow duration-300">
-      <div className={`w-16 h-16 rounded-full ${menu.bg} flex items-center justify-center mb-6`}>
-        <Icon className={`w-8 h-8 ${menu.color}`} />
-      </div>
-      <h3 className="font-heading text-2xl font-semibold text-foreground mb-6">
+const MenuCard = ({ menu }: { menu: (typeof menus)[0] }) => (
+  <div className="bg-card border border-border rounded-3xl overflow-hidden h-full flex flex-col shadow-sm hover:shadow-md transition-shadow duration-300">
+    <div className="h-48 overflow-hidden">
+      <img
+        src={menu.image}
+        alt={menu.title}
+        className="w-full h-full object-cover"
+      />
+    </div>
+    <div className="p-6 flex flex-col items-center text-center flex-1">
+      <h3 className="font-heading text-2xl font-semibold text-foreground mb-5">
         {menu.title}
       </h3>
-      <ul className="space-y-3 font-body text-muted-foreground w-full">
+      <ul className="space-y-2.5 font-body text-muted-foreground w-full">
         {menu.items.map((item, i) => (
           <li key={i} className="flex items-center gap-2 justify-center">
-            <span className={`w-1.5 h-1.5 rounded-full bg-primary shrink-0`} />
+            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
             {item}
           </li>
         ))}
       </ul>
     </div>
-  );
-};
+  </div>
+);
 
 const FoodMenu = () => {
   const isMobile = useIsMobile();
@@ -91,7 +84,7 @@ const FoodMenu = () => {
         </div>
 
         {isMobile ? (
-          <Carousel opts={{ align: "start", loop: true }} className="w-full">
+          <Carousel opts={{ align: "start", loop: true, dragFree: true }} className="w-full">
             <CarouselContent className="-ml-4">
               {menus.map((menu, i) => (
                 <CarouselItem key={i} className="pl-4 basis-[85%]">
@@ -99,10 +92,6 @@ const FoodMenu = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-center gap-2 mt-6">
-              <CarouselPrevious className="static translate-y-0" />
-              <CarouselNext className="static translate-y-0" />
-            </div>
           </Carousel>
         ) : (
           <div className="grid md:grid-cols-3 gap-8">
