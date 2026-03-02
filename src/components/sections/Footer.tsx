@@ -38,7 +38,9 @@ const Footer = () => {
       {/* Footer columns */}
       <div className="container py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="space-y-4">
-          <img src={logo} alt="Rajnandini Banquet Hall" className="h-12 brightness-0 invert" />
+          <div className="inline-flex items-center bg-background rounded-xl px-3 py-2">
+            <img src={logo} alt="Rajnandini Banquet Hall" className="h-10 md:h-12 w-auto object-contain" loading="lazy" />
+          </div>
           <p className="font-body text-sm text-background/60 leading-relaxed">
             Guwahati's premier banquet hall for weddings, corporate events, and celebrations.
           </p>
