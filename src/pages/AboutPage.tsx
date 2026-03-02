@@ -6,8 +6,6 @@ import gallery2 from "@/assets/gallery-2.jpg";
 import service1 from "@/assets/service-1.jpg";
 import service2 from "@/assets/service-2.jpg";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const AboutPage = () => {
   return (
@@ -15,15 +13,6 @@ const AboutPage = () => {
       <Header />
       <section className="pt-32 pb-20 lg:pb-28">
         <div className="container">
-          <div className="mb-8">
-            <Link to="/">
-              <Button variant="ghost" className="gap-2 text-muted-foreground hover:text-foreground">
-                <ArrowLeft className="h-4 w-4" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-
           {/* Hero */}
           <div className="text-center mb-20">
             <p className="text-primary font-body text-sm font-medium uppercase tracking-widest mb-4">

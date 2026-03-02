@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
 
@@ -26,15 +23,6 @@ const GalleryPage = () => {
       <Header />
       <section className="pt-32 pb-20 lg:pb-28">
         <div className="container">
-          <div className="mb-8">
-            <Link to="/#gallery">
-              <Button variant="ghost" className="gap-2 text-muted-foreground hover:text-foreground">
-                <ArrowLeft className="h-4 w-4" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-
           <div className="text-center mb-16">
             <p className="text-primary font-body text-sm font-medium uppercase tracking-widest mb-4">
               Our Gallery
