@@ -12,7 +12,7 @@ const Header = () => {
   const pageLinks: Record<string, string> = {
     "Contact": "/contact",
     "About Us": "/about",
-    "Gallery": "/gallery",
+    "Gallery": "/gallery"
   };
 
   const scrollTo = (id: string) => {
@@ -60,17 +60,17 @@ const Header = () => {
           </Link>
 
           <ul className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link}>
+            {navLinks.map((link) =>
+            <li key={link}>
                 <button onClick={() => scrollTo(link)} className="font-body text-sm text-foreground/80 hover:text-primary transition-colors">
                   {link}
                 </button>
               </li>
-            ))}
+            )}
           </ul>
 
-          <Link to="/contact" className="hidden lg:block bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-body text-sm font-medium hover:bg-primary/90 transition-colors">
-            Book Your Date
+          <Link to="/contact" className="hidden lg:block bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-body text-sm font-medium hover:bg-primary/90 transition-colors">Book Now
+
           </Link>
 
           <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
@@ -78,21 +78,21 @@ const Header = () => {
           </button>
         </div>
 
-        {isOpen && (
-          <div className="lg:hidden bg-background border-t border-border px-6 py-4 space-y-3">
-            {navLinks.map((link) => (
-              <button key={link} onClick={() => scrollTo(link)} className="block w-full text-left font-body text-foreground/80 hover:text-primary py-2">
+        {isOpen &&
+        <div className="lg:hidden bg-background border-t border-border px-6 py-4 space-y-3">
+            {navLinks.map((link) =>
+          <button key={link} onClick={() => scrollTo(link)} className="block w-full text-left font-body text-foreground/80 hover:text-primary py-2">
                 {link}
               </button>
-            ))}
+          )}
             <Link to="/contact" className="block w-full text-center bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-body text-sm font-medium mt-2" onClick={() => setIsOpen(false)}>
               Book Your Date
             </Link>
           </div>
-        )}
+        }
       </nav>
-    </header>
-  );
+    </header>);
+
 };
 
 export default Header;
