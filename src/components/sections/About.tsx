@@ -41,12 +41,13 @@ const About = () => {
           <p className="font-body text-muted-foreground text-base leading-relaxed">
             From intimate gatherings to grand wedding receptions, our experienced team ensures every event is executed with precision and elegance. With state-of-the-art amenities and personalized service, we create unforgettable experiences.
           </p>
-          <Link
-            to="/about"
+          <a
+            href="https://maps.app.goo.gl/dCbWAHKjBNUC2HRZ7"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-full font-body text-sm font-medium hover:bg-primary/90 transition-colors mt-2">
-
-            Learn More
-          </Link>
+            Find us on Gmap
+          </a>
         </div>
       </div>
     </section>);
