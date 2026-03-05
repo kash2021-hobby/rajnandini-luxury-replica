@@ -1,33 +1,43 @@
 import { useNavigate } from "react-router-dom";
 import { MapPin, Users, CalendarCheck, Sparkles, IndianRupee } from "lucide-react";
+import serviceLocation from "@/assets/service-location.webp";
+import serviceGatherings from "@/assets/service-gatherings.webp";
+import serviceEvents from "@/assets/service-events.webp";
+import serviceLuxury from "@/assets/service-luxury.webp";
+import servicePackages from "@/assets/service-packages.webp";
 
 const services = [
   {
     icon: MapPin,
+    image: serviceLocation,
     title: "Prime Location in Guwahati",
     description: "Convenient and easy for your guests to reach.",
     label: "Locations",
   },
   {
     icon: Users,
+    image: serviceGatherings,
     title: "Spacious Banquet Hall",
     description: "Perfectly designed to host both intimate and large gatherings.",
     label: "Large Gatherings",
   },
   {
     icon: CalendarCheck,
+    image: serviceEvents,
     title: "Complete Event Management",
     description: "From decoration to catering, we handle everything for you.",
     label: "Event Solutions",
   },
   {
     icon: Sparkles,
+    image: serviceLuxury,
     title: "Elegant Atmosphere",
     description: "Modern interiors blended with traditional elegance.",
     label: "Luxury Ambience",
   },
   {
     icon: IndianRupee,
+    image: servicePackages,
     title: "Budget-Friendly Packages",
     description: "The best value for weddings and events in Guwahati.",
     label: "Affordable Packages",
@@ -60,23 +70,27 @@ const Services = () => {
 
         {/* Service Cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {services.map((service) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={service.label}
-                className="group border border-border rounded-2xl p-8 text-center hover:border-primary/40 hover:shadow-lg transition-all duration-300 bg-card"
-              >
-                <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
+          {services.map((service) => (
+            <div
+              key={service.label}
+              className="group cursor-pointer border border-border rounded-2xl overflow-hidden hover:border-primary/40 hover:shadow-lg transition-all duration-300 bg-card"
+            >
+              <div className="overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.label}
+                  className="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-6 text-center">
                 <h3 className="font-heading text-lg md:text-xl font-semibold text-foreground mb-2">
                   {service.label}
                 </h3>
                 <p className="font-body text-sm text-muted-foreground mb-1 font-medium">
                   {service.title}
                 </p>
-                <p className="font-body text-sm text-muted-foreground mb-6">
+                <p className="font-body text-sm text-muted-foreground mb-5">
                   {service.description}
                 </p>
                 <button
@@ -86,8 +100,8 @@ const Services = () => {
                   Book Now
                 </button>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>
