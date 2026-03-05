@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Footer from "@/components/sections/Footer";
+import ImageLightbox from "@/components/ImageLightbox";
 
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
