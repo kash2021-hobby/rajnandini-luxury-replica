@@ -38,7 +38,8 @@ const Gallery = () => {
           {images.map((img, i) => (
             <div
               key={i}
-              className={`overflow-hidden rounded-3xl group ${img.className}`}
+              className={`overflow-hidden rounded-3xl group cursor-pointer ${img.className}`}
+              onClick={() => setSelectedIndex(i)}
             >
               <img
                 src={img.src}
@@ -48,6 +49,14 @@ const Gallery = () => {
             </div>
           ))}
         </div>
+
+        <ImageLightbox
+          images={images}
+          selectedIndex={selectedIndex}
+          onClose={() => setSelectedIndex(null)}
+          onNext={() => setSelectedIndex((prev) => (prev !== null ? (prev + 1) % images.length : null))}
+          onPrev={() => setSelectedIndex((prev) => (prev !== null ? (prev - 1 + images.length) % images.length : null))}
+        />
 
           <div className="text-center mt-12">
             <Link to="/gallery">
