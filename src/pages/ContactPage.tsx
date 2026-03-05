@@ -33,7 +33,8 @@ const ContactPage = () => {
     e.preventDefault();
     const dateStr = date ? format(date, "PPP") : "";
     const text = `Hi, I'm ${form.name}.%0A%0AEmail: ${form.email}${form.phone ? `%0APhone: ${form.phone}` : ""}${form.service ? `%0AService: ${form.service}` : ""}${dateStr ? `%0AEvent Date: ${dateStr}` : ""}%0A%0A${form.message}`;
-    window.open(`https://wa.me/917099042360?text=${text}`, "_blank");
+    const waUrl = `https://wa.me/916406096161?text=${text}`;
+    window.location.href = waUrl;
     setForm({ name: "", email: "", phone: "", service: "", message: "" });
     setDate(undefined);
   };

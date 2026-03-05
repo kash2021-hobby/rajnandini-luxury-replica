@@ -13,7 +13,9 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your message! We'll get back to you soon.");
+    const dateStr = date ? format(date, "PPP") : "";
+    const text = `Hi, I'm ${form.name}.%0A%0AEmail: ${form.email}${dateStr ? `%0AEvent Date: ${dateStr}` : ""}%0A%0A${form.message}`;
+    window.location.href = `https://wa.me/916406096161?text=${text}`;
     setForm({ name: "", email: "", message: "" });
     setDate(undefined);
   };
