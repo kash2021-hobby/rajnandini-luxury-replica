@@ -1,34 +1,37 @@
 
-Goal: Fix only the desktop header movement and keep the header/logo visually stable during page navigation (no footer changes).
 
-Plan
+## Fullscreen Lightbox for Gallery
 
-1) Keep Header mounted once across route changes
-- Update `src/App.tsx` to use a shared layout route with `<Header /> + <Outlet />`.
-- Remove `<Header />` usage/import from:
-  - `src/pages/Index.tsx`
-  - `src/pages/AboutPage.tsx`
-  - `src/pages/ContactPage.tsx`
-  - `src/pages/GalleryPage.tsx`
-- Footer stays exactly as-is in each page.
+### What to build
+Add a fullscreen lightbox viewer to both the homepage Gallery section and the Gallery page. Clicking any image opens it in a dark overlay with previous/next navigation and a close button.
 
-2) Stabilize logo space inside header
-- In `src/components/sections/Header.tsx`, reserve fixed logo space so nav items don’t shift during image paint:
-  - Add explicit `width`/`height` attributes on the `<img>`
-  - Use fixed-width wrapper/class (desktop + mobile sizes) and `shrink-0`.
+### Implementation
 
-3) Make desktop width behavior fully stable
-- In `src/index.css`, strengthen scrollbar reservation for desktop by updating:
-  - `scrollbar-gutter: stable` → `scrollbar-gutter: stable both-edges`
-- Add fallback for browsers with weaker support (always reserve vertical scrollbar space via CSS fallback).
+**1. Create a reusable `ImageLightbox` component** (`src/components/ImageLightbox.tsx`)
+- Uses Radix Dialog for accessible overlay behavior
+- Fullscreen dark backdrop (`bg-black/95`)
+- Displays the selected image centered and scaled to fit (`object-contain max-h-[90vh]`)
+- Left/right arrow buttons (ChevronLeft, ChevronRight from lucide) to navigate between images
+- Close button (X icon) top-right
+- Keyboard support comes free from Radix Dialog
+- Caption text below the image
 
-Technical details
-- Root cause is header remount + transient layout recalculation during route transitions.
-- Persisting Header at app-layout level prevents logo/menu reinitialization.
-- Explicit logo dimensions remove intrinsic-size reflow.
-- Stable scrollbar gutter prevents horizontal viewport-width changes that nudge centered nav content.
+**2. Update `src/components/sections/Gallery.tsx`**
+- Add `useState` for selected image index (null = closed)
+- Wrap each image in a clickable `cursor-pointer` div that sets the index
+- Render `<ImageLightbox>` at the bottom, passing images array, selected index, and onClose/onChange handlers
 
-Validation checklist
-- On desktop, click all header menu items repeatedly: header row should not move left/right.
-- Navigate `/`, `/about`, `/contact`, `/gallery`: logo should remain steady with no “refresh” flicker.
-- Confirm mobile menu behavior remains unchanged.
+**3. Update `src/pages/GalleryPage.tsx`**
+- Same pattern: add state, clickable images, and render `<ImageLightbox>`
+
+### Component API
+```tsx
+<ImageLightbox
+  images={images}          // { src, alt }[]
+  selectedIndex={number | null}
+  onClose={() => void}
+  onNext={() => void}
+  onPrev={() => void}
+/>
+```
+
