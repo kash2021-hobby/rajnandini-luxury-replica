@@ -1,34 +1,25 @@
 
-Goal: Fix only the desktop header movement and keep the header/logo visually stable during page navigation (no footer changes).
 
-Plan
+## Enhance "Why Choose Us" with Horizontal Auto-Scroll
 
-1) Keep Header mounted once across route changes
-- Update `src/App.tsx` to use a shared layout route with `<Header /> + <Outlet />`.
-- Remove `<Header />` usage/import from:
-  - `src/pages/Index.tsx`
-  - `src/pages/AboutPage.tsx`
-  - `src/pages/ContactPage.tsx`
-  - `src/pages/GalleryPage.tsx`
-- Footer stays exactly as-is in each page.
+### Changes
 
-2) Stabilize logo space inside header
-- In `src/components/sections/Header.tsx`, reserve fixed logo space so nav items don’t shift during image paint:
-  - Add explicit `width`/`height` attributes on the `<img>`
-  - Use fixed-width wrapper/class (desktop + mobile sizes) and `shrink-0`.
+**1. Update `src/components/sections/WhyChooseUs.tsx`**
+- Add 5 new cards with appropriate icons (AirVent, Car, Shield, ChefHat, Bed from lucide-react) and stock webp images from Unsplash/Pexels URLs
+- Replace the grid layout with a CSS infinite marquee-style horizontal scroll track (duplicated cards for seamless loop)
+- Implement:
+  - CSS `@keyframes scroll` animation moving cards left continuously (~30s duration)
+  - `animation-play-state: paused` on hover of the container
+  - Mouse drag scrolling via `onMouseDown/Move/Up` handlers with momentum
+  - Touch swipe via native `overflow-x: auto` + `scroll-snap` as fallback
+- Cards keep identical styling (border, rounded-2xl, shadow, hover effects, image height, padding, typography)
 
-3) Make desktop width behavior fully stable
-- In `src/index.css`, strengthen scrollbar reservation for desktop by updating:
-  - `scrollbar-gutter: stable` → `scrollbar-gutter: stable both-edges`
-- Add fallback for browsers with weaker support (always reserve vertical scrollbar space via CSS fallback).
+**2. Update `src/index.css`**
+- Add `@keyframes scroll-left` keyframe for the infinite marquee animation
 
-Technical details
-- Root cause is header remount + transient layout recalculation during route transitions.
-- Persisting Header at app-layout level prevents logo/menu reinitialization.
-- Explicit logo dimensions remove intrinsic-size reflow.
-- Stable scrollbar gutter prevents horizontal viewport-width changes that nudge centered nav content.
+### Approach
+Use a CSS marquee technique: render cards twice in a flex row, animate `translateX` from 0 to -50% infinitely. Overlay with `overflow: hidden`. Drag-to-scroll handled via JS mouse/touch events that temporarily disable the CSS animation and manually adjust `translateX`. On release, resume CSS animation from current position.
 
-Validation checklist
-- On desktop, click all header menu items repeatedly: header row should not move left/right.
-- Navigate `/`, `/about`, `/contact`, `/gallery`: logo should remain steady with no “refresh” flicker.
-- Confirm mobile menu behavior remains unchanged.
+### Stock images
+Use high-quality Unsplash URLs with `?w=400&q=80` for optimized loading, converted conceptually as webp (Unsplash auto-serves webp when supported).
+
