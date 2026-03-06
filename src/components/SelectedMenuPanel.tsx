@@ -217,10 +217,10 @@ Please contact me regarding this request.`;
                   value={formData.service}
                   onValueChange={(value) => setFormData({ ...formData, service: value })}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger id="service">
                     <SelectValue placeholder="Choose event type" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="z-[300]">
                     {services.map((service) => (
                       <SelectItem key={service.value} value={service.label}>
                         {service.label}
