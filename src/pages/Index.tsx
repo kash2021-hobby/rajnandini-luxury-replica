@@ -38,7 +38,7 @@ const Index = () => {
       <div className="fade-up"><WhyChooseUs /></div>
       <div className="fade-up"><FoodMenu /></div>
       <div className="fade-up"><Gallery /></div>
-      <Stats />
+
       <div className="fade-up"><Pricing /></div>
       <div className="fade-up"><Testimonials /></div>
       <div className="fade-up"><Contact /></div>

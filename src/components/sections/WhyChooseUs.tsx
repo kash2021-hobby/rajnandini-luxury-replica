@@ -1,10 +1,6 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { MapPin, Users, CalendarCheck, Sparkles, IndianRupee, AirVent, Car, Shield, ChefHat, Bed } from "lucide-react";
-import serviceLocation from "@/assets/service-location.webp";
-import serviceGatherings from "@/assets/service-gatherings.webp";
-import serviceEvents from "@/assets/service-events.webp";
-import serviceLuxury from "@/assets/service-luxury.webp";
-import servicePackages from "@/assets/service-packages.webp";
+
 import serviceAcComfort from "@/assets/service-ac-comfort.webp";
 import serviceParking from "@/assets/service-parking.webp";
 import serviceSecurity from "@/assets/service-security.webp";
@@ -12,36 +8,6 @@ import serviceKitchen from "@/assets/service-kitchen.webp";
 import serviceGuestRoom from "@/assets/service-guest-room.webp";
 
 const reasons = [
-  {
-    icon: MapPin,
-    image: serviceLocation,
-    title: "Locations",
-    description: "Prime Location in Guwahati – Convenient and easy for your guests to reach.",
-  },
-  {
-    icon: Users,
-    image: serviceGatherings,
-    title: "Large Gatherings",
-    description: "Spacious Banquet Hall – Perfectly designed to host both intimate and large gatherings.",
-  },
-  {
-    icon: CalendarCheck,
-    image: serviceEvents,
-    title: "Event Solutions",
-    description: "Complete Event Management – From decoration to catering, we handle everything for you.",
-  },
-  {
-    icon: Sparkles,
-    image: serviceLuxury,
-    title: "Luxury Ambience",
-    description: "Elegant Atmosphere – Modern interiors blended with traditional elegance.",
-  },
-  {
-    icon: IndianRupee,
-    image: servicePackages,
-    title: "Affordable Packages",
-    description: "Budget-Friendly Packages – The best value for weddings and events in Guwahati.",
-  },
   {
     icon: AirVent,
     image: serviceAcComfort,
