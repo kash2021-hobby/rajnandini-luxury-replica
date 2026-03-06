@@ -32,6 +32,11 @@ const ImageLightbox = ({ images, selectedIndex, onClose, onNext, onPrev }: Image
   if (selectedIndex === null) return null;
   const image = images[selectedIndex];
 
+  console.log("📸 ImageLightbox RENDERING:");
+  console.log("  - selectedIndex:", selectedIndex);
+  console.log("  - total images:", images.length);
+  console.log("  - current image:", image?.alt);
+
   return (
     <div
       className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm"
@@ -82,15 +87,17 @@ const ImageLightbox = ({ images, selectedIndex, onClose, onNext, onPrev }: Image
 
       {/* Perfectly Centered Image Container */}
       <div 
-        className="fixed inset-0 flex items-center justify-center px-16 py-20 md:px-20 md:py-24"
+        className="fixed inset-0 flex items-center justify-center px-12 py-16 md:px-20 md:py-20"
+        style={{ pointerEvents: 'none' }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative flex flex-col items-center justify-center w-full h-full">
+        <div className="relative flex flex-col items-center justify-center w-full h-full" style={{ pointerEvents: 'auto' }}>
           {/* Main Image - Perfectly Centered */}
           <img
             src={image.src}
             alt={image.alt}
-            className="max-w-full max-h-full w-auto h-auto object-contain select-none rounded-lg shadow-2xl"
+            style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain' }}
+            className="select-none rounded-lg shadow-2xl"
             draggable={false}
           />
           

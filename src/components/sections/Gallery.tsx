@@ -32,6 +32,9 @@ const lightboxImages = [
 const Gallery = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
+  console.log("🏠 HOMEPAGE Gallery Section - selectedIndex:", selectedIndex);
+  console.log("🏠 lightboxImages array:", lightboxImages);
+
   return (
     <section id="gallery" className="py-20 lg:py-28">
       <div className="container">
@@ -61,6 +64,7 @@ const Gallery = () => {
         </div>
 
         <ImageLightbox
+          key={`homepage-lightbox-${selectedIndex}`}
           images={lightboxImages}
           selectedIndex={selectedIndex}
           onClose={() => setSelectedIndex(null)}

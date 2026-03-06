@@ -1,5 +1,4 @@
 import { useParams, Navigate } from "react-router-dom";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Footer from "@/components/sections/Footer";
 import { foodCategories } from "@/data/foodCategories";
 
@@ -22,41 +21,49 @@ const FoodCategoryPage = () => {
           <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground">
             {category.title}
           </h1>
+          <p className="font-body text-muted-foreground mt-6 text-lg max-w-2xl mx-auto">
+            {category.description}
+          </p>
         </div>
       </section>
 
-      {/* Category Content */}
+      {/* Food Items Grid */}
       <section className="py-16 lg:py-24 bg-background">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-            {/* Image */}
-            <div className="rounded-3xl overflow-hidden shadow-lg">
-              <AspectRatio ratio={4 / 5}>
-                <img
-                  src={category.image}
-                  alt={category.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </AspectRatio>
-            </div>
+          {/* Grid Layout - Responsive */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+            {category.items.map((item, i) => (
+              <div
+                key={i}
+                className="group bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+              >
+                {/* Food Image */}
+                <div className="aspect-square overflow-hidden bg-muted">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
 
-            {/* Content */}
-            <div>
-              <h2 className="font-heading text-3xl md:text-4xl font-semibold text-foreground mb-4">
-                {category.title}
-              </h2>
-              <p className="font-body text-muted-foreground mb-8 text-lg">
-                {category.description}
+                {/* Food Name */}
+                <div className="p-4">
+                  <h3 className="font-heading text-lg font-semibold text-foreground text-center group-hover:text-primary transition-colors">
+                    {item.name}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Note Section */}
+          <div className="mt-16 text-center">
+            <div className="inline-block bg-muted/50 rounded-2xl px-8 py-6 max-w-2xl">
+              <p className="font-body text-muted-foreground text-sm">
+                ✨ All items are freshly prepared by our expert chefs using premium ingredients. 
+                Menu items and availability may vary based on the event package selected.
               </p>
-              <ul className="space-y-3 font-body text-foreground">
-                {category.items.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
-                    <span className="text-base">{item}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
