@@ -78,14 +78,14 @@ const ImageLightbox = ({ images, selectedIndex, onClose, onNext, onPrev }: Image
       )}
 
       {/* Centered Image */}
-      <div className="flex flex-col items-center justify-center w-full h-full px-4" onClick={(e) => e.stopPropagation()}>
+      <div className="relative flex items-center justify-center w-full h-full px-16 md:px-20" onClick={(e) => e.stopPropagation()}>
         <img
           src={image.src}
           alt={image.alt}
-          className="max-h-[85vh] max-w-[95vw] w-auto h-auto object-contain select-none"
+          className="max-h-[85vh] max-w-[90vw] md:max-w-[85vw] w-auto h-auto object-contain select-none"
           draggable={false}
         />
-        <p className="text-white/80 text-sm mt-4 text-center select-none max-w-[80vw] px-4">
+        <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/80 text-sm text-center select-none max-w-[80vw] px-4">
           {image.alt}
         </p>
       </div>
