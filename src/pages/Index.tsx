@@ -9,7 +9,7 @@ import Stats from "@/components/sections/Stats";
 import Pricing from "@/components/sections/Pricing";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
-import Blog from "@/components/sections/Blog";
+
 import Footer from "@/components/sections/Footer";
 
 const Index = () => {
@@ -42,7 +42,6 @@ const Index = () => {
       <div className="fade-up"><Pricing /></div>
       <div className="fade-up"><Testimonials /></div>
       <div className="fade-up"><Contact /></div>
-      <div className="fade-up"><Blog /></div>
       <Footer />
     </div>
   );
