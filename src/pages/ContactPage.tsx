@@ -82,7 +82,7 @@ const ContactPage = () => {
               
               {/* Service Selection Dropdown */}
               <Select onValueChange={(value) => setForm({ ...form, service: value })} value={form.service}>
-                <SelectTrigger className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors rounded-none h-auto border-0 justify-start">
+                <SelectTrigger className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors rounded-none h-auto justify-start">
                   <SelectValue placeholder="Select a service" />
                 </SelectTrigger>
                 <SelectContent>

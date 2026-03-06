@@ -10,15 +10,15 @@ import contactImg from "@/assets/contact.jpg";
 import { services } from "@/data/services";
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
   const [date, setDate] = useState<Date>();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const dateStr = date ? format(date, "PPP") : "";
-    const text = `Hi, I'm ${form.name}.%0A%0AEmail: ${form.email}${form.service ? `%0AService: ${form.service}` : ""}${dateStr ? `%0AEvent Date: ${dateStr}` : ""}%0A%0A${form.message}`;
+    const text = `Hi, I'm ${form.name}.%0A%0AEmail: ${form.email}${form.phone ? `%0APhone: ${form.phone}` : ""}${form.service ? `%0AService: ${form.service}` : ""}${dateStr ? `%0AEvent Date: ${dateStr}` : ""}%0A%0A${form.message}`;
     window.location.href = `https://wa.me/919164060961?text=${text}`;
-    setForm({ name: "", email: "", service: "", message: "" });
+    setForm({ name: "", email: "", phone: "", service: "", message: "" });
     setDate(undefined);
   };
 
@@ -35,7 +35,7 @@ const Contact = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <input
               type="text"
               placeholder="Your Name"
@@ -52,10 +52,17 @@ const Contact = () => {
               required
               className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors"
             />
+            <input
+              type="tel"
+              placeholder="Your Phone Number"
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors"
+            />
             
             {/* Service Selection Dropdown */}
             <Select onValueChange={(value) => setForm({ ...form, service: value })} value={form.service}>
-              <SelectTrigger className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors rounded-none h-auto border-0 justify-start">
+              <SelectTrigger className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors rounded-none h-auto justify-start">
                 <SelectValue placeholder="Select a service" />
               </SelectTrigger>
               <SelectContent>
