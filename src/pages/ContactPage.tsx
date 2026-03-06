@@ -6,8 +6,10 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Footer from "@/components/sections/Footer";
 import contactImg from "@/assets/contact.jpg";
+import { services } from "@/data/services";
 
 const ContactPage = () => {
   const [searchParams] = useSearchParams();
@@ -77,13 +79,21 @@ const ContactPage = () => {
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors"
               />
-              <input
-                type="text"
-                placeholder="Service Name"
-                value={form.service}
-                onChange={(e) => setForm({ ...form, service: e.target.value })}
-                className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors"
-              />
+              
+              {/* Service Selection Dropdown */}
+              <Select onValueChange={(value) => setForm({ ...form, service: value })} value={form.service}>
+                <SelectTrigger className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors rounded-none h-auto border-0 justify-start">
+                  <SelectValue placeholder="Select a service" />
+                </SelectTrigger>
+                <SelectContent>
+                  {services.map((service) => (
+                    <SelectItem key={service.value} value={service.label}>
+                      {service.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              
               {/* Date Picker */}
               <Popover>
                 <PopoverTrigger asChild>

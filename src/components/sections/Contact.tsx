@@ -5,18 +5,20 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import contactImg from "@/assets/contact.jpg";
+import { services } from "@/data/services";
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
   const [date, setDate] = useState<Date>();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const dateStr = date ? format(date, "PPP") : "";
-    const text = `Hi, I'm ${form.name}.%0A%0AEmail: ${form.email}${dateStr ? `%0AEvent Date: ${dateStr}` : ""}%0A%0A${form.message}`;
+    const text = `Hi, I'm ${form.name}.%0A%0AEmail: ${form.email}${form.service ? `%0AService: ${form.service}` : ""}${dateStr ? `%0AEvent Date: ${dateStr}` : ""}%0A%0A${form.message}`;
     window.location.href = `https://wa.me/919164060961?text=${text}`;
-    setForm({ name: "", email: "", message: "" });
+    setForm({ name: "", email: "", service: "", message: "" });
     setDate(undefined);
   };
 
@@ -50,6 +52,21 @@ const Contact = () => {
               required
               className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors"
             />
+            
+            {/* Service Selection Dropdown */}
+            <Select onValueChange={(value) => setForm({ ...form, service: value })} value={form.service}>
+              <SelectTrigger className="w-full bg-transparent border-b-2 border-border focus:border-primary outline-none py-3 font-body text-foreground placeholder:text-muted-foreground transition-colors rounded-none h-auto border-0 justify-start">
+                <SelectValue placeholder="Select a service" />
+              </SelectTrigger>
+              <SelectContent>
+                {services.map((service) => (
+                  <SelectItem key={service.value} value={service.label}>
+                    {service.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            
             {/* Date Picker */}
             <Popover>
               <PopoverTrigger asChild>
