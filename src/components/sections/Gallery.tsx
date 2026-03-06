@@ -10,13 +10,23 @@ import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
 
-const images = [
+const gridImages = [
   { src: gallery1, alt: "Grand wedding reception", className: "row-span-2" },
   { src: gallery2, alt: "Premium catering", className: "" },
   { src: gallery3, alt: "Corporate event setup", className: "" },
   { src: gallery4, alt: "Birthday celebration", className: "row-span-2" },
   { src: gallery5, alt: "Entrance lobby", className: "" },
   { src: gallery6, alt: "Outdoor garden", className: "" },
+];
+
+// Images for lightbox (without className to match interface)
+const lightboxImages = [
+  { src: gallery1, alt: "Grand wedding reception" },
+  { src: gallery2, alt: "Premium catering" },
+  { src: gallery3, alt: "Corporate event setup" },
+  { src: gallery4, alt: "Birthday celebration" },
+  { src: gallery5, alt: "Entrance lobby" },
+  { src: gallery6, alt: "Outdoor garden" },
 ];
 
 const Gallery = () => {
@@ -35,7 +45,7 @@ const Gallery = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[200px] md:auto-rows-[220px]">
-          {images.map((img, i) => (
+          {gridImages.map((img, i) => (
             <div
               key={i}
               className={`overflow-hidden rounded-3xl group cursor-pointer ${img.className}`}
@@ -51,11 +61,11 @@ const Gallery = () => {
         </div>
 
         <ImageLightbox
-          images={images}
+          images={lightboxImages}
           selectedIndex={selectedIndex}
           onClose={() => setSelectedIndex(null)}
-          onNext={() => setSelectedIndex((prev) => (prev !== null ? (prev + 1) % images.length : null))}
-          onPrev={() => setSelectedIndex((prev) => (prev !== null ? (prev - 1 + images.length) % images.length : null))}
+          onNext={() => setSelectedIndex((prev) => (prev !== null ? (prev + 1) % lightboxImages.length : null))}
+          onPrev={() => setSelectedIndex((prev) => (prev !== null ? (prev - 1 + lightboxImages.length) % lightboxImages.length : null))}
         />
 
           <div className="text-center mt-12">
