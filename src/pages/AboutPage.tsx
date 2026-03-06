@@ -1,5 +1,5 @@
 import Footer from "@/components/sections/Footer";
-import aboutImg from "@/assets/about.jpg";
+import aboutImg from "@/assets/about.webp";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import service1 from "@/assets/service-1.jpg";
