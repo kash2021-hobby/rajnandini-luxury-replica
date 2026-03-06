@@ -4,34 +4,6 @@ import logo from "@/assets/logo.webp";
 const Footer = () => {
   return (
     <footer className="bg-foreground text-background">
-      {/* Newsletter */}
-      <div className="border-b border-background/10">
-        <div className="container py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h3 className="font-heading text-2xl font-semibold">Subscribe to Our Newsletter</h3>
-            <p className="font-body text-sm text-background/60 mt-1">Stay updated with our latest events and offers</p>
-          </div>
-          <form
-            onSubmit={(e) => { e.preventDefault(); setEmail(""); }}
-            className="flex w-full md:w-auto"
-          >
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Your email address"
-              className="bg-background/10 border border-background/20 rounded-l-full px-6 py-3 font-body text-sm text-background placeholder:text-background/40 outline-none focus:border-primary w-full md:w-72"
-            />
-            <button
-              type="submit"
-              className="bg-primary text-primary-foreground px-6 py-3 rounded-r-full font-body text-sm font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </div>
-
       {/* Footer columns */}
       <div className="container py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="space-y-4">
