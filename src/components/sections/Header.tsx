@@ -10,7 +10,7 @@ const Header = () => {
   const [mobileFoodOpen, setMobileFoodOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLLIElement>(null);
   const navLinks = ["Home", "About Us", "Services", "Food Menu", "Gallery", "Blog", "Contact"];
 
   const pageLinks: Record<string, string> = {
