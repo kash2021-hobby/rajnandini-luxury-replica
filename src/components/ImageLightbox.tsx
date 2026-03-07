@@ -87,17 +87,15 @@ const ImageLightbox = ({ images, selectedIndex, onClose, onNext, onPrev }: Image
 
       {/* Perfectly Centered Image Container */}
       <div 
-        className="fixed inset-0 flex items-center justify-center px-12 py-16 md:px-20 md:py-20"
-        style={{ pointerEvents: 'none' }}
+        className="fixed inset-0 flex items-center justify-center p-6 md:p-10"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative flex flex-col items-center justify-center max-w-[1100px] max-h-[80vh] w-full" style={{ pointerEvents: 'auto' }}>
+        <div className="relative flex items-center justify-center max-w-[1000px] w-full">
           {/* Main Image - Perfectly Centered */}
           <img
             src={image.src}
             alt={image.alt}
-            style={{ maxWidth: '100%', maxHeight: '80vh', objectFit: 'contain' }}
-            className="select-none rounded-2xl shadow-2xl"
+            className="max-h-[80vh] w-auto object-contain rounded-2xl shadow-2xl select-none"
             draggable={false}
           />
           
