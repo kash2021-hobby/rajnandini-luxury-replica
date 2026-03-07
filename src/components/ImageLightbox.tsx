@@ -99,13 +99,6 @@ const ImageLightbox = ({ images, selectedIndex, onClose, onNext, onPrev }: Image
             draggable={false}
           />
           
-          {/* Image Caption */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 mb-4 px-4 py-2 bg-black/60 rounded-lg backdrop-blur-sm max-w-[90%]">
-            <p className="text-white/90 text-xs md:text-sm text-center select-none">
-              {image.alt}
-            </p>
-          </div>
-          
           {/* Image Counter */}
           {images.length > 1 && (
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-12 px-3 py-1 bg-black/60 rounded-full backdrop-blur-sm">
