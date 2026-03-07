@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Instagram } from "lucide-react";
 import Footer from "@/components/sections/Footer";
 import { Button } from "@/components/ui/button";
+import InstagramReelLightbox from "@/components/InstagramReelLightbox";
 
 const InstagramFeedPage = () => {
+  const [selectedReelIndex, setSelectedReelIndex] = useState<number | null>(null);
   // Dummy Instagram reel embed URLs (replace with actual Instagram embed URLs)
   const instagramReels = [
     {
@@ -52,6 +55,28 @@ const InstagramFeedPage = () => {
     window.open("https://www.instagram.com/rajnandiniluxury/", "_blank", "noopener,noreferrer");
   };
 
+  const handleReelClick = (index: number) => {
+    setSelectedReelIndex(index);
+  };
+
+  const handleClose = () => {
+    setSelectedReelIndex(null);
+  };
+
+  const handleNext = () => {
+    if (selectedReelIndex !== null) {
+      setSelectedReelIndex((selectedReelIndex + 1) % instagramReels.length);
+    }
+  };
+
+  const handlePrev = () => {
+    if (selectedReelIndex !== null) {
+      setSelectedReelIndex(
+        (selectedReelIndex - 1 + instagramReels.length) % instagramReels.length
+      );
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -71,22 +96,25 @@ const InstagramFeedPage = () => {
       {/* Instagram Reels Grid */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-            {instagramReels.map((reel) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+            {instagramReels.map((reel, index) => (
               <div
                 key={reel.id}
-                className="relative aspect-[9/16] bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                className="relative aspect-[9/16] bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                onClick={() => handleReelClick(index)}
               >
                 <iframe
                   src={reel.embedUrl}
                   title={reel.title}
-                  className="absolute inset-0 w-full h-full"
+                  className="absolute inset-0 w-full h-full pointer-events-none"
                   frameBorder="0"
                   scrolling="no"
                   allowTransparency={true}
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allow="clipboard-write; encrypted-media; picture-in-picture; web-share"
                   loading="lazy"
                 />
+                {/* Overlay to indicate clickable */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
               </div>
             ))}
           </div>
@@ -107,6 +135,15 @@ const InstagramFeedPage = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* Instagram Reel Lightbox */}
+      <InstagramReelLightbox
+        reels={instagramReels}
+        selectedIndex={selectedReelIndex}
+        onClose={handleClose}
+        onNext={handleNext}
+        onPrev={handlePrev}
+      />
     </div>
   );
 };
