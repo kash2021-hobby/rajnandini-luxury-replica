@@ -87,15 +87,15 @@ const ImageLightbox = ({ images, selectedIndex, onClose, onNext, onPrev }: Image
 
       {/* Perfectly Centered Image Container */}
       <div 
-        className="fixed inset-0 flex items-center justify-center p-6 md:p-10"
+        className="fixed inset-0 flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative flex items-center justify-center max-w-[1000px] w-full">
+        <div className="relative flex items-center justify-center max-w-[850px] w-full">
           {/* Main Image - Perfectly Centered */}
           <img
             src={image.src}
             alt={image.alt}
-            className="max-h-[80vh] w-auto object-contain rounded-2xl shadow-2xl select-none"
+            className="max-h-[65vh] w-auto object-contain rounded-2xl shadow-2xl select-none"
             draggable={false}
           />
           
