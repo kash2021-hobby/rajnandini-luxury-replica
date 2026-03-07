@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from "react";
 import { Star, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -55,11 +56,45 @@ const testimonials = [
 const Testimonials = () => {
   const averageRating = 4.9;
   const totalReviews = 247;
+  const [isPaused, setIsPaused] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleViewAllReviews = () => {
     // Replace with actual Google Business profile URL
     window.open("https://www.google.com/maps/search/rajnandini+banquet+hall+guwahati", "_blank", "noopener,noreferrer");
   };
+
+  // Duplicate testimonials for seamless loop
+  const duplicatedTestimonials = [...testimonials, ...testimonials];
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationFrameId: number;
+    let scrollPosition = 0;
+
+    const scroll = () => {
+      if (!isPaused && scrollContainer) {
+        scrollPosition += 0.5; // Slow, smooth scroll speed
+        
+        // Reset position when halfway through (seamless loop)
+        const halfWidth = scrollContainer.scrollWidth / 2;
+        if (scrollPosition >= halfWidth) {
+          scrollPosition = 0;
+        }
+        
+        scrollContainer.scrollLeft = scrollPosition;
+      }
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+
+    animationFrameId = requestAnimationFrame(scroll);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [isPaused]);
 
   return (
     <section className="py-20 lg:py-28 bg-muted/30">
@@ -124,54 +159,67 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Review Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {testimonials.map((review, index) => (
-            <div
-              key={index}
-              className="bg-background rounded-2xl p-6 shadow-sm border border-border hover:shadow-md transition-all duration-300 relative overflow-hidden"
-            >
-              {/* Google Watermark */}
-              <div className="absolute top-4 right-4 opacity-5">
-                <svg className="w-12 h-12" viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
-                </svg>
-              </div>
-
-              {/* Reviewer Info */}
-              <div className="flex items-start gap-3 mb-4">
-                {/* Avatar Circle */}
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
-                  {review.avatar}
+        {/* Horizontal Scrolling Review Cards */}
+        <div className="relative overflow-hidden max-w-full">
+          {/* Fade Gradients */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-muted/30 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none" />
+          
+          {/* Scrolling Container */}
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-hidden py-4"
+            style={{ scrollBehavior: 'auto' }}
+          >
+            {duplicatedTestimonials.map((review, index) => (
+              <div
+                key={`${review.name}-${index}`}
+                className="bg-background rounded-2xl p-6 shadow-sm border border-border hover:shadow-md transition-all duration-300 relative overflow-hidden flex-shrink-0 w-[340px] md:w-[380px]"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+              >
+                {/* Google Watermark */}
+                <div className="absolute top-4 right-4 opacity-5">
+                  <svg className="w-12 h-12" viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+                  </svg>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-foreground text-base">{review.name}</h4>
-                  <p className="text-xs text-muted-foreground">{review.role}</p>
-                  <div className="flex items-center gap-1 mt-1">
-                    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-                      <svg className="w-3 h-3" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" fill="#4285F4"/>
-                      </svg>
-                      Google Review
-                    </span>
+
+                {/* Reviewer Info */}
+                <div className="flex items-start gap-3 mb-4">
+                  {/* Avatar Circle */}
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+                    {review.avatar}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-foreground text-base">{review.name}</h4>
+                    <p className="text-xs text-muted-foreground">{review.role}</p>
+                    <div className="flex items-center gap-1 mt-1">
+                      <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                        <svg className="w-3 h-3" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" fill="#4285F4"/>
+                        </svg>
+                        Google Review
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Star Rating */}
-              <div className="flex items-center gap-1 mb-3">
-                {Array.from({ length: review.rating }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                ))}
-                <span className="text-xs text-muted-foreground ml-1">{review.date}</span>
-              </div>
+                {/* Star Rating */}
+                <div className="flex items-center gap-1 mb-3">
+                  {Array.from({ length: review.rating }).map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                  <span className="text-xs text-muted-foreground ml-1">{review.date}</span>
+                </div>
 
-              {/* Review Text */}
-              <p className="font-body text-sm text-muted-foreground leading-relaxed line-clamp-4">
-                {review.quote}
-              </p>
-            </div>
-          ))}
+                {/* Review Text */}
+                <p className="font-body text-sm text-muted-foreground leading-relaxed line-clamp-4">
+                  {review.quote}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Bottom CTA */}
